@@ -1,0 +1,47 @@
+<div class="form">
+    @if (isLoginMode) {
+    <h2 class="form__title">Login</h2>
+    <form class="form__form" #loginForm="ngForm" (ngSubmit)="onLoginSubmit(loginForm)">
+        <div class="form__field">
+            <label class="form__label" for="login-username">Username:</label>
+            <input class="form__input" type="text" id="login-username" name="namemail" [(ngModel)]="loginData.namemail"
+                required>
+        </div>
+
+        <div class="form__field">
+            <label class="form__label" for="login-password">Password:</label>
+            <input class="form__input" type="password" id="login-password" name="plainPassword"
+                [(ngModel)]="loginData.plainPassword" required>
+        </div>
+
+        <button class="form__button form__button--primary" type="submit">Login</button>
+        <button class="form__button form__button--secondary" type="button" (click)="isLoginMode = false">Are you new?
+            Register here</button>
+    </form>
+    } @else {
+    <h2 class="form__title">Register</h2>
+    <form class="form__form" #registerForm="ngForm" (ngSubmit)="onRegisterSubmit(registerForm)">
+        <div class="form__field">
+            <label class="form__label" for="register-username">Username:</label>
+            <input class="form__input" type="text" id="register-username" name="name" [(ngModel)]="registerData.name"
+                required>
+        </div>
+
+        <div class="form__field">
+            <label class="form__label" for="register-email">Email:</label>
+            <input class="form__input" type="email" id="register-email" name="email" [(ngModel)]="registerData.email"
+                required>
+        </div>
+
+        <div class="form__field">
+            <label class="form__label" for="register-password">Password:</label>
+            <input class="form__input" type="password" id="register-password" name="password"
+                [(ngModel)]="registerData.password" required>
+        </div>
+
+        <button class="form__button form__button--primary" type="submit">Register</button>
+        <button class="form__button form__button--secondary" type="button" (click)="isLoginMode = true">Already have
+            an account? Login here</button>
+    </form>
+    }
+</div>

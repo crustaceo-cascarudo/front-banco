@@ -1,15 +1,15 @@
 <div class="form">
     @if (isLoginMode) {
     <h2 class="form__title">Login</h2>
-    <form class="form__form">
+    <form class="form__form" (ngSubmit)="onLoginSubmit(loginForm)" #loginForm="ngForm">
         <div class="form__field">
             <label class="form__label" for="username">Username:</label>
-            <input class="form__input" type="text" id="username" name="username" required>
+            <input class="form__input" type="text" id="login-username" name="namemail" [(ngModel)]="loginData.namemail" required>
         </div>
 
         <div class="form__field">
             <label class="form__label" for="password">Password:</label>
-            <input class="form__input" type="password" id="password" name="password" required>
+            <input class="form__input" type="password" id="login-password" name="plainPassword" [(ngModel)]="loginData.plainPassword" required>
         </div>
 
         <button class="form__button form__button--primary" type="submit">Login</button>
@@ -18,20 +18,20 @@
     </form>
     } @else {
     <h2 class="form__title">Register</h2>
-    <form class="form__form">
+    <form class="form__form" (ngSubmit)="onRegisterSubmit(registerForm)" #registerForm="ngForm">
         <div class="form__field">
             <label class="form__label" for="username">Username:</label>
-            <input class="form__input" type="text" id="username" name="username" required>
+            <input class="form__input" type="text" id="register-username" name="name" [(ngModel)]="registerData.name" required>
         </div>
 
         <div class="form__field">
             <label class="form__label" for="email">Email:</label>
-            <input class="form__input" type="email" id="email" name="email" required>
+            <input class="form__input" type="email" id="register-email" name="email" [(ngModel)]="registerData.email" required>
         </div>
 
         <div class="form__field">
             <label class="form__label" for="password">Password:</label>
-            <input class="form__input" type="password" id="password" name="password" required>
+            <input class="form__input" type="password" id="register-password" name="password" [(ngModel)]="registerData.password" required>
         </div>
 
         <button class="form__button form__button--primary" type="submit">Register</button>
