@@ -1,0 +1,87 @@
+.form {
+    --mlt-sys-color-primary-turquoise: #1abc9c;
+    --mlt-sys-color-primary-green: #2ecc71;
+    --mlt-sys-color-background: #ffffff;
+    --mlt-sys-color-primary-text: #333333;
+    --mlt-sys-color-secondary-text: #4e4e4e;
+    --mlt-sys-color-border: #dddddd;
+
+    --form-color-primary: var(--mlt-sys-color-primary-turquoise);
+    --form-color-secondary: var(--mlt-sys-color-primary-green);
+    --form-color-background: var(--mlt-sys-color-background);
+    --form-color-primary-text: var(--mlt-sys-color-primary-text);
+    --form-color-secondary-text: var(--mlt-sys-color-secondary-text);
+
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: var(--mlt-sys-color-background);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form__title {
+    color: var(--mlt-sys-color-text);
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.form__form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form__field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form__label {
+    color: var(--mlt-sys-color-text);
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.form__input {
+    padding: 10px 12px;
+    border: 1px solid var(--mlt-sys-color-border);
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+
+    &:focus {
+        outline: none;
+        border-color: var(--mlt-sys-color-primary-turquoise);
+    }
+}
+
+.form__button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+        opacity: 0.9;
+    }
+
+    &--primary {
+        color: #fff;
+        background: linear-gradient(90deg,
+                var(--mlt-sys-color-primary-turquoise) 0%,
+                var(--mlt-sys-color-primary-turquoise) 70%,
+                var(--mlt-sys-color-primary-green) 100%);
+        margin-top: 8px;
+    }
+
+    &--secondary {
+        color: var(--mlt-sys-color-secondary-text);
+        background: transparent;
+    }
+}

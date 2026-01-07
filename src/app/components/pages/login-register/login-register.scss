@@ -1,0 +1,11 @@
+.body {
+  --mlt-sys-color-background-1: #F2F2F2;
+  --mlt-sys-color-primary-turquoise: #1abc9c;
+  --mlt-sys-color-primary-green: #2ecc71;
+
+  --login-register-color-background: var(--mlt-sys-color-background-1);
+
+  background-color: var(--login-register-color-background);
+  height: 100vh;
+  padding-top: 40px;
+}

@@ -1,0 +1,208 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Juan",
+      "surname": "Pérez",
+      "password": "123456",
+      "dni": "12345678A",
+      "number": "600123456"
+    },
+    {
+      "id": 2,
+      "name": "María",
+      "surname": "Gómez",
+      "password": "abcdef",
+      "dni": "87654321B",
+      "number": "611987654"
+    },
+    {
+      "id": 3,
+      "name": "Carlos",
+      "surname": "López",
+      "password": "qwerty",
+      "dni": "11223344C",
+      "number": "622334455"
+    }
+  ],
+
+  "accounts": [
+    {
+      "id": 1,
+      "iban": "ES9121000418450200051332",
+      "balance": 2450.75,
+      "currency": "EUR",
+      "createdAt": "2024-06-01",
+      "status": "active",
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "iban": "ES7921000813610123456789",
+      "balance": 1200.00,
+      "currency": "EUR",
+      "createdAt": "2024-07-10",
+      "status": "active",
+      "userId": 2
+    },
+    {
+      "id": 3,
+      "iban": "ES6621000418401234567891",
+      "balance": 560.30,
+      "currency": "EUR",
+      "createdAt": "2024-08-15",
+      "status": "active",
+      "userId": 1
+    },
+    {
+      "id": 4,
+      "iban": "ES1021009876543210001122",
+      "balance": 9800.00,
+      "currency": "EUR",
+      "createdAt": "2023-12-20",
+      "status": "blocked",
+      "userId": 3
+    }
+  ],
+
+  "cards": [
+    {
+      "id": 1,
+      "cardNumber": "4111 1111 1111 1111",
+      "expiryDate": "12/27",
+      "cvv": "123",
+      "type": "debit",
+      "status": "active",
+      "dailyLimit": 1000,
+      "accountId": 1
+    },
+    {
+      "id": 2,
+      "cardNumber": "5222 2222 2222 2222",
+      "expiryDate": "05/28",
+      "cvv": "456",
+      "type": "virtual",
+      "status": "active",
+      "dailyLimit": 300,
+      "accountId": 1
+    },
+    {
+      "id": 3,
+      "cardNumber": "4333 3333 3333 3333",
+      "expiryDate": "09/26",
+      "cvv": "789",
+      "type": "debit",
+      "status": "blocked",
+      "dailyLimit": 500,
+      "accountId": 2
+    },
+    {
+      "id": 4,
+      "cardNumber": "5444 4444 4444 4444",
+      "expiryDate": "03/29",
+      "cvv": "321",
+      "type": "credit",
+      "status": "active",
+      "dailyLimit": 2000,
+      "accountId": 3
+    }
+  ],
+
+  "huchas": [
+    {
+      "id": 1,
+      "name": "Vacaciones",
+      "balance": 400.00,
+      "locked": false,
+      "createdAt": "2024-09-01",
+      "accountId": 1
+    },
+    {
+      "id": 2,
+      "name": "Emergencias",
+      "balance": 800.00,
+      "locked": true,
+      "createdAt": "2024-01-15",
+      "accountId": 1
+    },
+    {
+      "id": 3,
+      "name": "Coche nuevo",
+      "balance": 2500.00,
+      "locked": false,
+      "createdAt": "2023-11-20",
+      "accountId": 3
+    }
+  ],
+
+  "transactions": [
+    {
+      "id": 1,
+      "type": "deposit",
+      "amount": 1500.00,
+      "date": "2025-01-01",
+      "description": "Ingreso inicial",
+      "accountId": 1
+    },
+    {
+      "id": 2,
+      "type": "withdrawal",
+      "amount": -200.00,
+      "date": "2025-01-03",
+      "description": "Retirada cajero",
+      "accountId": 1
+    },
+    {
+      "id": 3,
+      "type": "card_payment",
+      "amount": -45.60,
+      "date": "2025-01-05",
+      "description": "Supermercado",
+      "cardId": 1,
+      "accountId": 1
+    },
+    {
+      "id": 4,
+      "type": "hucha_transfer",
+      "amount": -300.00,
+      "date": "2025-01-07",
+      "description": "A hucha Vacaciones",
+      "accountId": 1,
+      "huchaId": 1
+    },
+    {
+      "id": 5,
+      "type": "hucha_withdraw",
+      "amount": 150.00,
+      "date": "2025-01-10",
+      "description": "Desde hucha Vacaciones",
+      "accountId": 1,
+      "huchaId": 1
+    },
+    {
+      "id": 6,
+      "type": "transfer",
+      "amount": -500.00,
+      "date": "2025-01-12",
+      "description": "Transferencia a María",
+      "accountId": 1
+    },
+    {
+      "id": 7,
+      "type": "deposit",
+      "amount": 1200.00,
+      "date": "2025-01-02",
+      "description": "Nómina",
+      "accountId": 2
+    },
+    {
+      "id": 8,
+      "type": "card_payment",
+      "amount": -89.99,
+      "date": "2025-01-06",
+      "description": "Tienda online",
+      "cardId": 4,
+      "accountId": 3
+    }
+  ]
+}
