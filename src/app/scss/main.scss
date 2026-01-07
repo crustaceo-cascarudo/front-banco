@@ -1,0 +1,4 @@
+/*Si no especificas que archivo SASS busca un _index.scss dentro de la carpeta automaticamente*/
+@forward "./02_base";
+@forward "./03_components";
+@forward "./04_global";

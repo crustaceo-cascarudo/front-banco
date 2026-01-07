@@ -1,0 +1,22 @@
+.header {
+  --mlt-sys-color-primary-turquoise: #1abc9c;
+  --mlt-sys-color-primary-green: #2ecc71;
+
+  background: linear-gradient(
+    90deg,
+    var(--mlt-sys-color-primary-turquoise) 0%,
+    var(--mlt-sys-color-primary-turquoise) 70%,
+    var(--mlt-sys-color-primary-green) 100%
+  );
+  
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  font-weight: bolder;
+}
+
+.header__title {
+  color: #fff;
+  font-size: 2rem;
+  margin: 0;
+}

@@ -1,0 +1,17 @@
+@use "sass:list";
+@use "../01_utilities/index.scss"as utilidades;
+
+:root {
+    @for $i from 1 through list.length(utilidades.$border-radiuss) {
+        $border-radius: list.nth(utilidades.$border-radiuss, $i);
+        --mlt-sys-border-radius-#{$i}:#{$border-radius};
+    }
+}
+
+@for $i from 1 through list.length(utilidades.$border-radiuss) {
+    $border-radius: list.nth(utilidades.$border-radiuss, $i);
+
+    .g--border-radius-#{$i} {
+        border-radius: var(--mlt-sys-border-radius-#{$i});
+    }
+}

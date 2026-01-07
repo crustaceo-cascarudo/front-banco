@@ -1,0 +1,44 @@
+.l-flex {
+    display: flex;
+
+    // Direction
+    &--direction-row { flex-direction: row; }
+    &--direction-row-reverse { flex-direction: row-reverse; }
+    &--direction-column { flex-direction: column; }
+    &--direction-column-reverse { flex-direction: column-reverse; }
+
+    // Wrap
+    &--wrap { flex-wrap: wrap; }
+    &--no-wrap { flex-wrap: nowrap; }
+    &--wrap-reverse { flex-wrap: wrap-reverse; }
+
+    // Justify Content
+    &--justify-start { justify-content: flex-start; }
+    &--justify-end { justify-content: flex-end; }
+    &--justify-center { justify-content: center; }
+    &--justify-between { justify-content: space-between; }
+    &--justify-around { justify-content: space-around; }
+    &--justify-evenly { justify-content: space-evenly; }
+
+    // Align Items
+    &--align-start { align-items: flex-start; }
+    &--align-end { align-items: flex-end; }
+    &--align-center { align-items: center; }
+    &--align-baseline { align-items: baseline; }
+    &--align-stretch { align-items: stretch; }
+
+    // Align Content
+    &--content-start { align-content: flex-start; }
+    &--content-end { align-content: flex-end; }
+    &--content-center { align-content: center; }
+    &--content-between { align-content: space-between; }
+    &--content-around { align-content: space-around; }
+    &--content-stretch { align-content: stretch; }
+
+    // Gap
+    &--gap-xs { gap: 0.25rem; }
+    &--gap-sm { gap: 0.5rem; }
+    &--gap-md { gap: 1rem; }
+    &--gap-lg { gap: 2rem; }
+    &--gap-xl { gap: 4rem; }
+}

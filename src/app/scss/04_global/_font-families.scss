@@ -1,0 +1,14 @@
+@use "sass:map";
+@use "../01_utilities/index.scss"as utilidades;
+
+:root {
+    @each $key, $value in utilidades.$font-families{
+        --mlt-sys-font-family-#{$key}:#{$value};
+    }
+}
+
+@each $key, $value in utilidades.$font-families{
+    .g--font-family-#{$key}{
+        font-family: var(--mlt-sys-font-family-#{$key});
+    }
+}

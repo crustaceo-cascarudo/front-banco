@@ -1,0 +1,17 @@
+@use "sass:list";
+@use "../01_utilities/index.scss"as utilidades;
+
+:root {
+    @for $i from 1 through list.length(utilidades.$box-shadows) {
+        $box-shadow: list.nth(utilidades.$box-shadows, $i);
+        --mlt-sys-box-shadow-#{$i}:#{$box-shadow};
+    }
+}
+
+@for $i from 1 through list.length(utilidades.$box-shadows) {
+    $box-shadow: list.nth(utilidades.$box-shadows, $i);
+
+    .g--box-shadow-#{$i} {
+        box-shadow: var(--mlt-sys-box-shadow-#{$i});
+    }
+}

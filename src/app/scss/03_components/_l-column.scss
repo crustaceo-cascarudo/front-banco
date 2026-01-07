@@ -1,0 +1,21 @@
+@use "sass:list";
+@use "../01_utilities/index.scss"as utilidades;
+
+:root {
+    @for $i from 1 through list.length(utilidades.$paddings) {
+        $padding: list.nth(utilidades.$paddings, $i);
+        --mlt-sys-gap-#{$i}:#{$padding};
+    }
+}
+
+.l-column{
+    display: table-column;
+
+    @for $i from 1 through list.length(utilidades.$paddings) {
+        $padding: list.nth(utilidades.$paddings, $i);
+    
+        .--gap-#{$i} {
+            column-gap: var(--mlt-sys-gap-#{$i});
+        }
+    } 
+}
