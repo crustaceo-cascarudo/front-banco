@@ -1,0 +1,38 @@
+.body {
+  --mlt-sys-color-background-1: #F2F2F2;
+  --mlt-sys-color-primary-turquoise: #1abc9c;
+  --mlt-sys-color-primary-green: #2ecc71;
+
+  --landing-color-background: var(--mlt-sys-color-background-1);
+  --landing-color-button-left: var(--mlt-sys-color-primary-turquoise);
+  --landing-color-button-right: var(--mlt-sys-color-primary-green);
+
+  background-color: var(--landing-color-background);
+  height: 100vh;
+}
+
+.title {
+  color: #000;
+  text-align: center;
+  padding-top: 15%;
+  font-size: 4rem;
+}
+
+.button {
+  display: block;
+  margin: 70px auto;
+  padding: 12px 24px;
+  font-size: 1.2rem;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+
+  background: linear-gradient(
+    90deg,
+    var(--landing-color-button-left) 0%,
+    var(--landing-color-button-left) 70%,
+    var(--landing-color-button-right) 100%
+  );
+}
+
