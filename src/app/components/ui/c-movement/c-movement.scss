@@ -1,0 +1,100 @@
+.c-movement {
+    --c-movement-padding-block: var(--mlt-sys-padding-5);
+    --c-movement-padding-inline: var(--mlt-sys-padding-6);
+    --c-movement-border-radius: var(--mlt-sys-border-radius-5);
+    --c-movement-margin-bottom: var(--mlt-sys-margin-4);
+    --c-movement-gap: var(--mlt-sys-gap-5);
+    --c-movement-background: #f8f8f8;
+    --c-movement-background-hover: #f0f0f0;
+    
+    --c-movement__icon-size: 40px;
+    --c-movement__icon-border-radius: 50%;
+    --c-movement__icon-credit-bg: #2ecc71;
+    --c-movement__icon-debit-bg: var(--mlt-sys-color-text-color-1);
+    --c-movement__icon-color: var(--mlt-sys-color-text-color-2);
+    
+    --c-movement__description-font-size: var(--mlt-sys-font-size-3);
+    --c-movement__description-color: var(--mlt-sys-color-text-color-1);
+    --c-movement__description-font-weight: 500;
+    
+    --c-movement__date-font-size: var(--mlt-sys-font-size-2);
+    --c-movement__date-color: #666;
+    
+    --c-movement__amount-font-size: var(--mlt-sys-font-size-4);
+    --c-movement__amount-font-weight: 600;
+    --c-movement__amount-credit-color: #2ecc71;
+    --c-movement__amount-debit-color: var(--mlt-sys-color-text-color-1);
+
+    font-family: var(--mlt-sys-font-family-iner);
+    display: flex;
+    align-items: center;
+    gap: var(--c-movement-gap);
+    padding-block: var(--c-movement-padding-block);
+    padding-inline: var(--c-movement-padding-inline);
+    border-radius: var(--c-movement-border-radius);
+    margin-bottom: var(--c-movement-margin-bottom);
+    background-color: var(--c-movement-background);
+    transition: background-color 0.2s ease;
+
+    &:hover {
+        background-color: var(--c-movement-background-hover);
+    }
+
+    &__icon {
+        width: var(--c-movement__icon-size);
+        height: var(--c-movement__icon-size);
+        border-radius: var(--c-movement__icon-border-radius);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        color: var(--c-movement__icon-color);
+
+        &--credit {
+            background-color: var(--c-movement__icon-credit-bg);
+        }
+
+        &--debit {
+            background-color: var(--c-movement__icon-debit-bg);
+        }
+
+        svg {
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    &__details {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__description {
+        font-size: var(--c-movement__description-font-size);
+        color: var(--c-movement__description-color);
+        font-weight: var(--c-movement__description-font-weight);
+        margin: 0;
+    }
+
+    &__date {
+        font-size: var(--c-movement__date-font-size);
+        color: var(--c-movement__date-color);
+        margin: 0;
+    }
+
+    &__amount {
+        font-size: var(--c-movement__amount-font-size);
+        font-weight: var(--c-movement__amount-font-weight);
+        margin: 0;
+        white-space: nowrap;
+
+        &--credit {
+            color: var(--c-movement__amount-credit-color);
+        }
+
+        &--debit {
+            color: var(--c-movement__amount-debit-color);
+        }
+    }
+}

@@ -1,0 +1,99 @@
+.c-panel-account {
+    --c-panel-account-padding: var(--mlt-sys-padding-8);
+    --c-panel-account-background-color: var(--mlt-sys-color-background-1);
+    
+    --c-panel-account__content-background: var(--mlt-sys-color-background-2);
+    --c-panel-account__content-padding: var(--mlt-sys-padding-8);
+    --c-panel-account__content-border-radius: var(--mlt-sys-border-radius-6);
+    --c-panel-account__content-box-shadow: var(--mlt-sys-box-shadow-2);
+    --c-panel-account__content-max-width: 600px;
+    
+    --c-panel-account__name-font-size: var(--mlt-sys-font-size-4);
+    --c-panel-account__name-color: var(--mlt-sys-color-text-color-1);
+    --c-panel-account__name-margin-bottom: var(--mlt-sys-margin-5);
+    --c-panel-account__name-font-weight: 400;
+    
+    --c-panel-account__balance-font-size: var(--mlt-sys-font-size-9);
+    --c-panel-account__balance-font-weight: 700;
+    --c-panel-account__balance-margin-bottom: var(--mlt-sys-margin-9);
+    --c-panel-account__balance-color: var(--mlt-sys-color-text-color-1);
+    
+    --c-panel-account__movements-margin-top: var(--mlt-sys-margin-9);
+    --c-panel-account__movements-title-margin-bottom: var(--mlt-sys-margin-6);
+    --c-panel-account__movements-title-font-size: var(--mlt-sys-font-size-4);
+    --c-panel-account__movements-title-color: var(--mlt-sys-color-text-color-1);
+    
+    --c-panel-account__link-color: #0066ff;
+    --c-panel-account__link-hover-color: #0052cc;
+    --c-panel-account__link-font-size: var(--mlt-sys-font-size-3);
+
+    font-family: var(--mlt-sys-font-family-iner);
+    padding: var(--c-panel-account-padding);
+    background-color: var(--c-panel-account-background-color);
+    min-height: 100vh;
+
+    &__title {
+        display: none;
+    }
+
+    &__content {
+        background: var(--c-panel-account__content-background);
+        border-radius: var(--c-panel-account__content-border-radius);
+        box-shadow: var(--c-panel-account__content-box-shadow);
+        padding: var(--c-panel-account__content-padding);
+        max-width: var(--c-panel-account__content-max-width);
+        margin: 0 auto;
+    }
+
+    &__name {
+        font-size: var(--c-panel-account__name-font-size);
+        color: var(--c-panel-account__name-color);
+        margin-bottom: var(--c-panel-account__name-margin-bottom);
+        font-weight: var(--c-panel-account__name-font-weight);
+    }
+
+    &__balance {
+        font-size: var(--c-panel-account__balance-font-size);
+        font-weight: var(--c-panel-account__balance-font-weight);
+        margin-bottom: var(--c-panel-account__balance-margin-bottom);
+        color: var(--c-panel-account__balance-color);
+        line-height: 1;
+    }
+
+    &__movements {
+        margin-top: var(--c-panel-account__movements-margin-top);
+    }
+
+    &__movements-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: var(--c-panel-account__movements-title-margin-bottom);
+
+        h3 {
+            font-size: var(--c-panel-account__movements-title-font-size);
+            font-weight: 400;
+            color: var(--c-panel-account__movements-title-color);
+            margin: 0;
+        }
+    }
+
+    &__content__movements-link {
+        color: var(--c-panel-account__link-color);
+        font-size: var(--c-panel-account__link-font-size);
+        font-weight: 400;
+        text-decoration: none;
+        cursor: pointer;
+        transition: color 0.2s ease;
+
+        &:hover {
+            color: var(--c-panel-account__link-hover-color);
+            text-decoration: underline;
+        }
+    }
+
+    &__movements-list {
+        display: flex;
+        flex-direction: column;
+    }
+}

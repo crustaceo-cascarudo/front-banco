@@ -20,7 +20,6 @@ export class AuthService {
     }
 
     removeToken(): void {
-
         localStorage.removeItem(this.TOKEN_KEY);
     }
 

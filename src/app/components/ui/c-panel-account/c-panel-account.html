@@ -1,0 +1,19 @@
+<div class="c-panel-account">
+    <h1 class="c-panel-account__title">Cuentas</h1>
+    <div class="c-panel-account__content">
+        <p class="c-panel-account__name">Hola {{ userName }}!</p>
+        <h2 class="c-panel-account__balance">{{ account?.balance | currency:'EUR':'symbol':'1.2-2' }}</h2>
+
+        <div class="c-panel-account__movements">
+            <div class="c-panel-account__movements-title">
+                <h3>Últimos movimientos</h3>
+                <a class="c-panel-account__content__movements-link">Mostrar más</a>
+            </div>
+            <div class="c-panel-account__movements-list">
+                @for (movement of movements; track movement.id) {
+                    <c-movement [movement]="movement"/>
+                }
+            </div>
+        </div>
+    </div>
+</div>
