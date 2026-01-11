@@ -1,10 +1,10 @@
 import { Component, Input } from '@angular/core';
-import { CommonModule, DatePipe, CurrencyPipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { Movement } from '../../../models/movement'
 
 @Component({
   selector: 'c-movement',
-  imports: [CommonModule, DatePipe, CurrencyPipe],
+  imports: [CommonModule, DatePipe],
   templateUrl: './c-movement.html',
   styleUrl: './c-movement.scss',
 })

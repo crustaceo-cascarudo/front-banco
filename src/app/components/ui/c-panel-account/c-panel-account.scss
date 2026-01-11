@@ -2,6 +2,11 @@
     --c-panel-account-padding: var(--mlt-sys-padding-8);
     --c-panel-account-background-color: var(--mlt-sys-color-background-1);
     
+    --c-panel-account__title-font-size: var(--mlt-sys-font-size-4);
+    --c-panel-account__title-color: var(--mlt-sys-color-text-color-1);
+    --c-panel-account__title-margin-bottom: var(--mlt-sys-margin-6);
+    --c-panel-account__title-font-weight: 700;
+    
     --c-panel-account__content-background: var(--mlt-sys-color-background-2);
     --c-panel-account__content-padding: var(--mlt-sys-padding-8);
     --c-panel-account__content-border-radius: var(--mlt-sys-border-radius-6);
@@ -12,6 +17,10 @@
     --c-panel-account__name-color: var(--mlt-sys-color-text-color-1);
     --c-panel-account__name-margin-bottom: var(--mlt-sys-margin-5);
     --c-panel-account__name-font-weight: 400;
+    
+    --c-panel-account__iban-font-size: var(--mlt-sys-font-size-2);
+    --c-panel-account__iban-color: #666;
+    --c-panel-account__iban-margin-bottom: var(--mlt-sys-margin-4);
     
     --c-panel-account__balance-font-size: var(--mlt-sys-font-size-9);
     --c-panel-account__balance-font-weight: 700;
@@ -33,7 +42,55 @@
     min-height: 100vh;
 
     &__title {
-        display: none;
+        font-size: var(--c-panel-account__title-font-size);
+        font-weight: var(--c-panel-account__title-font-weight);
+        color: var(--c-panel-account__title-color);
+        margin-bottom: var(--c-panel-account__title-margin-bottom);
+        text-align: center;
+    }
+
+    &__carousel {
+        display: flex;
+        overflow-x: auto;
+        overflow-y: visible;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        gap: 16px;
+        padding: 0 calc(50% - 210px) var(--mlt-sys-padding-6);
+        margin: 0 auto var(--mlt-sys-margin-6);
+        max-width: 800px;
+        scroll-behavior: smooth;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+    &__card {
+        flex: 0 0 420px;
+        min-width: 280px;
+        max-width: 420px;
+        scroll-snap-align: center;
+        scroll-snap-stop: always;
+        transition: opacity 0.3s ease, transform 0.3s ease, filter 0.3s ease;
+        transform-origin: center;
+        will-change: transform, opacity, filter;
+        
+        &:not(&--active) {
+            opacity: 0;
+            transform: scale(0.85);
+            filter: blur(3px);
+            pointer-events: none;
+        }
+
+        &--active {
+            opacity: 1;
+            transform: scale(1);
+            filter: blur(0);
+            z-index: 1;
+            pointer-events: auto;
+        }
     }
 
     &__content {
@@ -41,8 +98,8 @@
         border-radius: var(--c-panel-account__content-border-radius);
         box-shadow: var(--c-panel-account__content-box-shadow);
         padding: var(--c-panel-account__content-padding);
-        max-width: var(--c-panel-account__content-max-width);
-        margin: 0 auto;
+        width: 100%;
+        position: relative;
     }
 
     &__name {
@@ -50,6 +107,13 @@
         color: var(--c-panel-account__name-color);
         margin-bottom: var(--c-panel-account__name-margin-bottom);
         font-weight: var(--c-panel-account__name-font-weight);
+    }
+
+    &__iban {
+        font-size: var(--c-panel-account__iban-font-size);
+        color: var(--c-panel-account__iban-color);
+        margin-bottom: var(--c-panel-account__iban-margin-bottom);
+        font-family: monospace;
     }
 
     &__balance {
@@ -95,5 +159,40 @@
     &__movements-list {
         display: flex;
         flex-direction: column;
+    }
+
+    &__indicators {
+        display: flex;
+        justify-content: center;
+        gap: var(--mlt-sys-margin-3);
+        padding: var(--mlt-sys-padding-4) 0;
+    }
+
+    &__indicator {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: #ccc;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        padding: 0;
+        outline: none;
+
+        &--active {
+            width: 24px;
+            border-radius: 4px;
+            background-color: var(--c-panel-account__link-color);
+        }
+
+        &:hover:not(&--active) {
+            background-color: #999;
+            transform: scale(1.2);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--c-panel-account__link-color);
+            outline-offset: 2px;
+        }
     }
 }

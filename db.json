@@ -38,7 +38,7 @@
       "iban": "ES7921000813610123456789",
       "balance": 1200.00,
       "status": "active",
-      "userId": 2
+      "userId": 1
     },
     {
       "id": 3,
@@ -52,7 +52,7 @@
       "iban": "ES1021009876543210001122",
       "balance": 9800.00,
       "status": "blocked",
-      "userId": 3
+      "userId": 1
     }
   ],
   "cards": [
