@@ -6,9 +6,12 @@
   --landing-color-background: var(--mlt-sys-color-background-1);
   --landing-color-button-left: var(--mlt-sys-color-primary-turquoise);
   --landing-color-button-right: var(--mlt-sys-color-primary-green);
+  --landing-font-family: var(--mlt-sys-font-family-default);
+
 
   background-color: var(--landing-color-background);
   height: 100vh;
+  font-family: var(--landing-font-family);
 }
 
 .title {
@@ -16,6 +19,7 @@
   text-align: center;
   padding-top: 15%;
   font-size: 4rem;
+  font-weight: bold;
 }
 
 .button {

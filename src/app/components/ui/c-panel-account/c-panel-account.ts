@@ -51,7 +51,7 @@ export class CPanelAccount implements OnInit, OnDestroy, AfterViewInit {
         if (accounts && accounts.length > 0) {
           this.accounts = accounts;
           console.log('accounts:', this.accounts);
-          this.loadMovements(this.accounts[0].id);
+          this.loadMovements(this.accounts[0].iban);
           this.currentAccountOn.emit(this.accounts[0]);
         }
       },
@@ -68,19 +68,21 @@ export class CPanelAccount implements OnInit, OnDestroy, AfterViewInit {
     }, 150);
   }
 
-  private loadMovements(accountId: number | string): void {
+  private loadMovements(accountIban: string): void {
     const movementService = this.jsonHttp as JsonServerService<Movement>;
     const movementSub = movementService.getAll('movements').subscribe({
       next: (allMovements: Movement[]) => {
-        const accountIdNum = Number(accountId);
         this.movements = allMovements
-          .filter(m => Number(m.originAccountId) === accountIdNum || Number(m.destinationAccountId) === accountIdNum)
+          .filter(m => 
+            m.originAccountIban === accountIban || 
+            m.destinationAccountIban === accountIban
+          )
           .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
           .slice(0, 5);
-        console.log('movements:', this.movements);
+        console.log('movements for account', accountIban, ':', this.movements);
       },
       error: (error) => {
-        console.error('Error:', error);
+        console.error('Error loading movements:', error);
       }
     });
     this.subscriptions.add(movementSub);
@@ -119,7 +121,7 @@ export class CPanelAccount implements OnInit, OnDestroy, AfterViewInit {
       
       if (closestIndex !== this.currentAccountIndex) {
         this.currentAccountIndex = closestIndex;
-        this.loadMovements(this.accounts[closestIndex].id);
+        this.loadMovements(this.accounts[closestIndex].iban);
         this.currentAccountOn.emit(this.accounts[closestIndex]);
       }
     }, 100);
@@ -145,7 +147,7 @@ export class CPanelAccount implements OnInit, OnDestroy, AfterViewInit {
       });
       
       this.currentAccountIndex = index;
-      this.loadMovements(this.accounts[index].id);
+      this.loadMovements(this.accounts[index].iban);
       this.currentAccountOn.emit(this.accounts[index]);
       
       setTimeout(() => {

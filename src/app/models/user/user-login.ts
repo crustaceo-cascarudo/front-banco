@@ -1,4 +1,4 @@
 export interface UserLogin {
-    namemail: string;
+    dni: string;
     plainPassword: string;
 }

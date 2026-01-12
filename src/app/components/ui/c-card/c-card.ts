@@ -1,10 +1,10 @@
 import { Component, Input } from '@angular/core';
-import { CommonModule, DecimalPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Card } from '../../../models/card';
 
 @Component({
   selector: 'c-card',
-  imports: [CommonModule, DecimalPipe],
+  imports: [CommonModule],
   templateUrl: './c-card.html',
   styleUrl: './c-card.scss',
 })

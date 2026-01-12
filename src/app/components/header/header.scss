@@ -1,6 +1,7 @@
 .header {
   --mlt-sys-color-primary-turquoise: #1abc9c;
   --mlt-sys-color-primary-green: #2ecc71;
+  --header-font-family: var(--mlt-sys-font-family-default);
 
   background: linear-gradient(
     90deg,
@@ -13,6 +14,7 @@
   align-items: center;
   padding: 20px;
   font-weight: bolder;
+  font-family: var(--header-font-family);
 }
 
 .header__title {

@@ -30,8 +30,8 @@ export class LoginService {
     });
   }
 
-  register(name: string, email: string, plainPassword: string) {
-    this.http.post<LoginResponse>(this.registerUrl, { name, email, plainPassword }).subscribe({
+  register(name: string, surname: string, dni: string, plainPassword: string) {
+    this.http.post<LoginResponse>(this.registerUrl, { name, surname, dni, plainPassword }).subscribe({
       next: (datos) => {
         console.log(datos);
 

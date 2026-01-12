@@ -1,8 +1,9 @@
 export interface Movement {
     id: number;
     type: 'debit' | 'credit';
-    originAccountId: number;
-    destinationAccountId: number;
+    paymentMethod: 'card' | 'transfer' | 'withdrawal' | 'deposit';
+    originAccountIban: string;
+    destinationAccountIban: string;
     amount: number;
     date: string;
     description: string;

@@ -1,7 +1,6 @@
 import { Component, inject, OnInit, OnDestroy, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Card } from '../../../models/card';
-import { Movement } from '../../../models/movement';
 import { CCard } from '../c-card/c-card';
 import { JsonServerService } from '../../../services/json-server-service';
 
@@ -14,11 +13,10 @@ import { JsonServerService } from '../../../services/json-server-service';
 export class CPanelCards implements OnInit, OnDestroy, OnChanges {
   private jsonHttp = inject(JsonServerService);
 
-  @Input() accountId: number | null = null;
+  @Input() accountIban: string | null = null;
 
   cards: Card[] = [];
   currentCardIndex: number = 0;
-  cardBalances: Map<number, number> = new Map();
   
   private subscriptions: Subscription = new Subscription();
   private scrollTimeout: any;
@@ -30,20 +28,19 @@ export class CPanelCards implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnInit(): void {
-    this.loadCards();
+    this.loadCards(this.accountIban);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['accountId']) {
-      console.log('AccountId changed from', changes['accountId'].previousValue, 'to', changes['accountId'].currentValue);
+    if (changes['accountIban']) {
+      console.log('AccountIban changed from', changes['accountIban'].previousValue, 'to', changes['accountIban'].currentValue);
       this.currentCardIndex = 0;
       this.cards = [];
-      this.cardBalances.clear();
-      this.loadCards();
+      this.loadCards(this.accountIban);
     }
   }
 
-  private loadCards(): void {
+  private loadCards(iban: string | null): void {
     if (this.cardLoadSubscription) {
       this.cardLoadSubscription.unsubscribe();
     }
@@ -51,49 +48,18 @@ export class CPanelCards implements OnInit, OnDestroy, OnChanges {
     const cardService = this.jsonHttp as JsonServerService<Card>;
     this.cardLoadSubscription = cardService.getAll('cards').subscribe({
       next: (cards: Card[]) => {
-        const accountIdNum = this.accountId !== null ? Number(this.accountId) : null;
+        const accountIban = this.accountIban;
         
         this.cards = cards.filter(card => 
-          card.status === 'active' && 
-          (accountIdNum === null || Number(card.accountId) === accountIdNum)
+          accountIban === null || card.accountIban === accountIban
         );
-        console.log('Filtered cards for account', accountIdNum, ':', this.cards);
-        if (this.cards.length > 0) {
-          this.loadCardBalances();
-        }
+        console.log('Filtered cards for account', accountIban, ':', this.cards);
       },
       error: (error) => {
         console.error('Error loading cards:', error);
       }
     });
     this.subscriptions.add(this.cardLoadSubscription);
-  }
-
-  private loadCardBalances(): void {
-    const movementService = this.jsonHttp as JsonServerService<Movement>;
-    const movementSub = movementService.getAll('movements').subscribe({
-      next: (movements: Movement[]) => {
-        this.cardBalances.clear();
-        
-        this.cards.forEach(card => {
-          const cardMovements = movements.filter(m => 
-            m.type === 'debit' && 
-            (m.originAccountId === card.accountId || m.destinationAccountId === card.accountId)
-          );
-          const total = cardMovements.reduce((sum, m) => sum + m.amount, 0);
-          this.cardBalances.set(card.id, total);
-          console.log(`Balance for card ${card.id}:`, total);
-        });
-      },
-      error: (error) => {
-        console.error('Error loading movements:', error);
-      }
-    });
-    this.subscriptions.add(movementSub);
-  }
-
-  getCardBalance(cardId: number): number {
-    return this.cardBalances.get(cardId) || 0;
   }
 
   onScroll(event: Event): void {
