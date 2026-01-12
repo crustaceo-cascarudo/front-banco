@@ -1,0 +1,126 @@
+.c-card {
+    --c-card-width: 340px;
+    --c-card-height: 220px;
+    --c-card-padding: var(--mlt-sys-padding-7);
+    --c-card-border-radius: var(--mlt-sys-border-radius-6);
+    --c-card-box-shadow: var(--mlt-sys-box-shadow-3);
+    
+    --c-card-debit-bg-start: #e74c3c;
+    --c-card-debit-bg-end: #c0392b;
+    --c-card-credit-bg-start: #3498db;
+    --c-card-credit-bg-end: #2980b9;
+    
+    --c-card-text-color: var(--mlt-sys-color-text-color-2);
+    --c-card-chip-size: 48px;
+    --c-card-chip-color: #f1c40f;
+    
+    font-family: var(--mlt-sys-font-family-iner);
+    width: var(--c-card-width);
+    height: var(--c-card-height);
+    border-radius: var(--c-card-border-radius);
+    padding: var(--c-card-padding);
+    box-shadow: var(--c-card-box-shadow);
+    color: var(--c-card-text-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &--debit {
+        background: linear-gradient(135deg, var(--c-card-debit-bg-start) 0%, var(--c-card-debit-bg-end) 100%);
+    }
+
+    &--credit {
+        background: linear-gradient(135deg, var(--c-card-credit-bg-start) 0%, var(--c-card-credit-bg-end) 100%);
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    &__chip {
+        width: var(--c-card-chip-size);
+        height: 36px;
+        background: var(--c-card-chip-color);
+        border-radius: var(--mlt-sys-border-radius-3);
+        position: relative;
+        
+        &::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 12px;
+            right: 12px;
+            height: 2px;
+            background: rgba(0, 0, 0, 0.2);
+            transform: translateY(-50%);
+        }
+    }
+
+    &__type {
+        font-size: var(--mlt-sys-font-size-2);
+        text-transform: capitalize;
+        margin: 0;
+        opacity: 0.9;
+    }
+
+    &__body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    &__number {
+        font-size: var(--mlt-sys-font-size-5);
+        font-weight: 500;
+        letter-spacing: 2px;
+        margin: var(--mlt-sys-margin-4) 0;
+        font-family: 'Courier New', monospace;
+    }
+
+    &__details {
+        display: flex;
+        gap: var(--mlt-sys-margin-8);
+        margin-top: var(--mlt-sys-margin-4);
+    }
+
+    &__detail {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__label {
+        font-size: var(--mlt-sys-font-size-1);
+        opacity: 0.7;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    &__value {
+        font-size: var(--mlt-sys-font-size-3);
+        margin: var(--mlt-sys-margin-1) 0 0;
+        font-weight: 500;
+    }
+
+    &__footer {
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        padding-top: var(--mlt-sys-padding-4);
+    }
+
+    &__balance-label {
+        font-size: var(--mlt-sys-font-size-2);
+        margin: 0 0 var(--mlt-sys-margin-2);
+        opacity: 0.8;
+    }
+
+    &__balance {
+        font-size: var(--mlt-sys-font-size-6);
+        font-weight: 700;
+        margin: 0;
+    }
+}

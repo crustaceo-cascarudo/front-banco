@@ -51,7 +51,7 @@
       "id": 4,
       "iban": "ES1021009876543210001122",
       "balance": 9800.00,
-      "status": "blocked",
+      "status": "active",
       "userId": 1
     }
   ],
@@ -80,7 +80,7 @@
       "expiryDate": "09/26",
       "cvv": "789",
       "type": "debit",
-      "status": "blocked",
+      "status": "active",
       "accountId": 2
     },
     {

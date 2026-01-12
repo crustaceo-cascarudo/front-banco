@@ -1,6 +1,6 @@
 .c-panel-account {
     --c-panel-account-padding: var(--mlt-sys-padding-8);
-    --c-panel-account-background-color: var(--mlt-sys-color-background-1);
+    --c-panel-account-background-color: transparent;
     
     --c-panel-account__title-font-size: var(--mlt-sys-font-size-4);
     --c-panel-account__title-color: var(--mlt-sys-color-text-color-1);
@@ -39,14 +39,17 @@
     font-family: var(--mlt-sys-font-family-iner);
     padding: var(--c-panel-account-padding);
     background-color: var(--c-panel-account-background-color);
-    min-height: 100vh;
+    max-width: 500px;
+    margin: 0 auto;
 
     &__title {
         font-size: var(--c-panel-account__title-font-size);
         font-weight: var(--c-panel-account__title-font-weight);
         color: var(--c-panel-account__title-color);
         margin-bottom: var(--c-panel-account__title-margin-bottom);
-        text-align: center;
+        text-align: left;
+        padding-left: calc(50% - 210px);
+        max-width: 800px;
     }
 
     &__carousel {
@@ -78,7 +81,7 @@
         will-change: transform, opacity, filter;
         
         &:not(&--active) {
-            opacity: 0;
+            opacity: 0.3;
             transform: scale(0.85);
             filter: blur(3px);
             pointer-events: none;

@@ -5,5 +5,6 @@ export interface Card {
     expirationDate: string;
     cvv: string;
     type: 'debit' | 'credit';
+    status?: 'active' | 'blocked';
     accountId: number;
 }

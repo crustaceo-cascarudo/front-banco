@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
+import { Component, inject, OnInit, OnDestroy, AfterViewInit, EventEmitter, Output } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { Account } from '../../../models/account';
@@ -16,6 +16,8 @@ import { JsonServerService } from '../../../services/json-server-service';
 })
 export class CPanelAccount implements OnInit, OnDestroy, AfterViewInit {
   private jsonHttp = inject(JsonServerService);
+
+  @Output() currentAccountOn = new EventEmitter<Account | null>();
 
   userName: string = '';
   accounts: Account[] = [];
@@ -50,6 +52,7 @@ export class CPanelAccount implements OnInit, OnDestroy, AfterViewInit {
           this.accounts = accounts;
           console.log('accounts:', this.accounts);
           this.loadMovements(this.accounts[0].id);
+          this.currentAccountOn.emit(this.accounts[0]);
         }
       },
       error: (error) => {
@@ -117,6 +120,7 @@ export class CPanelAccount implements OnInit, OnDestroy, AfterViewInit {
       if (closestIndex !== this.currentAccountIndex) {
         this.currentAccountIndex = closestIndex;
         this.loadMovements(this.accounts[closestIndex].id);
+        this.currentAccountOn.emit(this.accounts[closestIndex]);
       }
     }, 100);
   }
@@ -142,6 +146,7 @@ export class CPanelAccount implements OnInit, OnDestroy, AfterViewInit {
       
       this.currentAccountIndex = index;
       this.loadMovements(this.accounts[index].id);
+      this.currentAccountOn.emit(this.accounts[index]);
       
       setTimeout(() => {
         this.isScrolling = false;

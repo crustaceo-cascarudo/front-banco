@@ -1,8 +1,8 @@
 .body {
-  --mlt-sys-color-background-1: #F2F2F2;
-
-  --dashboaasdrd-color-background: var(--mlt-sys-color-background-1);
+  --dashboard-color-background: var(--mlt-sys-color-background-1);
 
   background-color: var(--dashboard-color-background);
-  height: 100vh;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
 }
