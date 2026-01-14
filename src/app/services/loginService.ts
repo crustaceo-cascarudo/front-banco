@@ -1,7 +1,9 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from './auth-service';
-import { LoginResponse } from '../models/loginResponse';
+import { LoginResponse } from '../models/user/loginResponse';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -13,43 +15,47 @@ export class LoginService {
   loginUrl = this.url + 'login';
   registerUrl = this.url + 'register';
 
-  logIn(dni: string, plainPassword: string) {
-    this.http.post<LoginResponse>(this.loginUrl, { dni, plainPassword }).subscribe({
-      next: (datos) => {
-        console.log(datos);
-
-        if (datos.token != null && datos.token != "") {
-          this.authService.setToken(datos.token)
-        } else {
-          this.authService.removeToken()
-          alert("Contraseña incorrecta");
-        }
-      },
-
-      error: (error) => console.log('ERROR JSON SERVER' + error.status),
-    });
+  logIn(dni: string, plainPassword: string): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(this.loginUrl, { dni, plainPassword }).pipe(
+      tap({
+        next: (datos) => {
+          console.log('Login response:', datos);
+          if (datos.token != null && datos.token != "" && datos.user) {
+            this.authService.setToken(datos.token);
+            this.authService.setUserId(datos.user.id);
+            console.log('✅ Token y userId guardados:', datos.user.id);
+          } else {
+            this.authService.removeToken();
+            this.authService.removeUserId();
+            alert("Contraseña incorrecta");
+          }
+        },
+        error: (error) => console.log('ERROR LOGIN:', error.status)
+      })
+    );
   }
 
-  register(name: string, surname: string, surname2: string, dni: string, password: string) {
-    this.http.post<LoginResponse>(this.registerUrl, { name, surname, surname2, dni, password }).subscribe({
-      next: (datos) => {
-        console.log(datos);
-
-        if (datos.token != null && datos.token != "") {
-          this.authService.setToken(datos.token)
-        } else {
-          this.authService.removeToken()
-          alert("Error en el registro");
-        }
-      }
-      ,
-
-      error: (error) => console.log('ERROR JSON SERVER' + error.status),
-    });
+  register(name: string, surname: string, surname2: string, dni: string, password: string): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(this.registerUrl, { name, surname, surname2, dni, password }).pipe(
+      tap({
+        next: (datos) => {
+          console.log('Register response:', datos);
+          if (datos.token != null && datos.token != "" && datos.user) {
+            this.authService.setToken(datos.token);
+            this.authService.setUserId(datos.user.id);
+            console.log('✅ Token y userId guardados:', datos.user.id);
+          } else {
+            this.authService.removeToken();
+            this.authService.removeUserId();
+            alert("Error en el registro");
+          }
+        },
+        error: (error) => console.log('ERROR REGISTER:', error.status)
+      })
+    );
   }
 
-  logOut() {
-    this.http.post(this.url + 'logout', {}).subscribe();
-    this.authService.logout().subscribe();
+  logOut(): Observable<any> {
+    return this.authService.logout();
   }
 }

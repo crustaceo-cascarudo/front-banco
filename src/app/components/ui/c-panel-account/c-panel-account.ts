@@ -3,10 +3,9 @@ import { DecimalPipe } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { Account } from '../../../models/account';
 import { Movement } from '../../../models/movement';
-import { User } from '../../../models/user/user';
 import { CMovement } from '../c-movement/c-movement'
-import { JsonServerService } from '../../../services/json-server-service';
-
+import { HttpClientService } from '../../../services/http-client-service';
+import { AuthService } from '../../../services/auth-service';
 
 @Component({
   selector: 'c-panel-account',
@@ -15,11 +14,14 @@ import { JsonServerService } from '../../../services/json-server-service';
   styleUrl: './c-panel-account.scss',
 })
 export class CPanelAccount implements OnInit, OnDestroy, AfterViewInit {
-  private jsonHttp = inject(JsonServerService);
+  private httpService = inject(HttpClientService);
+  private authService = inject(AuthService);
 
   @Output() currentAccountOn = new EventEmitter<Account | null>();
 
   userName: string = '';
+  userDni: string | null = null;
+  userId: number | null = null;
   accounts: Account[] = [];
   currentAccountIndex: number = 0;
   movements: Movement[] = [];
@@ -33,30 +35,31 @@ export class CPanelAccount implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit(): void {
-    const userService = this.jsonHttp as JsonServerService<User>;
-    const userSub = userService.getById('users', 1).subscribe({
-      next: (user: User) => {
-        this.userName = user.name;
-        console.log('userName:', this.userName);
-      },
-      error: (error) => {
-        console.error('Error:', error);
-      }
-    });
-    this.subscriptions.add(userSub);
+    const userId = this.authService.getUserId();
+    
+    if (userId) {
+      console.log('🔍 Cargando cuentas para usuario ID:', userId);
+      this.userId = userId;
+      this.loadUserAccounts(userId);
+    } else {
+      console.error('❌ No se encontró el ID del usuario en localStorage');
+    }
+  }
 
-    const accountService = this.jsonHttp as JsonServerService<Account>;
-    const accountSub = accountService.search('accounts', { userId: 1 }).subscribe({
+  private loadUserAccounts(userId: number): void {
+    const accountSub = this.httpService.getAccountsByUserId(userId).subscribe({
       next: (accounts: Account[]) => {
         if (accounts && accounts.length > 0) {
           this.accounts = accounts;
-          console.log('accounts:', this.accounts);
+          console.log('💳 Cuentas cargadas:', this.accounts);
           this.loadMovements(this.accounts[0].iban);
           this.currentAccountOn.emit(this.accounts[0]);
+        } else {
+          console.log('⚠️ No se encontraron cuentas para el usuario');
         }
       },
       error: (error) => {
-        console.error('Error:', error);
+        console.error('Error loading accounts:', error);
       }
     });
     this.subscriptions.add(accountSub);
@@ -69,17 +72,12 @@ export class CPanelAccount implements OnInit, OnDestroy, AfterViewInit {
   }
 
   private loadMovements(accountIban: string): void {
-    const movementService = this.jsonHttp as JsonServerService<Movement>;
-    const movementSub = movementService.getAll('movements').subscribe({
-      next: (allMovements: Movement[]) => {
-        this.movements = allMovements
-          .filter(m => 
-            m.originAccountIban === accountIban || 
-            m.destinationAccountIban === accountIban
-          )
+    const movementSub = this.httpService.getMovementsByAccountIban(accountIban).subscribe({
+      next: (movements: Movement[]) => {
+        this.movements = movements
           .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
           .slice(0, 5);
-        console.log('movements for account', accountIban, ':', this.movements);
+        console.log('📊 Movimientos para cuenta', accountIban, ':', this.movements);
       },
       error: (error) => {
         console.error('Error loading movements:', error);

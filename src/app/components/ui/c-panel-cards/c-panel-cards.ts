@@ -2,7 +2,7 @@ import { Component, inject, OnInit, OnDestroy, Input, OnChanges, SimpleChanges }
 import { Subscription } from 'rxjs';
 import { Card } from '../../../models/card';
 import { CCard } from '../c-card/c-card';
-import { JsonServerService } from '../../../services/json-server-service';
+import { HttpClientService } from '../../../services/http-client-service';
 
 @Component({
   selector: 'c-panel-cards',
@@ -11,7 +11,7 @@ import { JsonServerService } from '../../../services/json-server-service';
   styleUrl: './c-panel-cards.scss',
 })
 export class CPanelCards implements OnInit, OnDestroy, OnChanges {
-  private jsonHttp = inject(JsonServerService);
+  private httpService = inject(HttpClientService);
 
   @Input() accountIban: string | null = null;
 
@@ -45,8 +45,7 @@ export class CPanelCards implements OnInit, OnDestroy, OnChanges {
       this.cardLoadSubscription.unsubscribe();
     }
 
-    const cardService = this.jsonHttp as JsonServerService<Card>;
-    this.cardLoadSubscription = cardService.getAll('cards').subscribe({
+    this.cardLoadSubscription = this.httpService.getCards(iban ?? '').subscribe({
       next: (cards: Card[]) => {
         const accountIban = this.accountIban;
         

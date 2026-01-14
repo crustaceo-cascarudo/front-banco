@@ -22,3 +22,40 @@
   font-size: 2rem;
   margin: 0;
 }
+
+.header__user-section {
+  position: relative;
+}
+
+.header__user-icon-container {
+  position: relative;
+  cursor: pointer;
+}
+
+.header__logout-panel {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 8px;
+  padding: 8px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.header__logout-button {
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: var(--header-font-family);
+  color: #e74c3c;
+  background: none;
+  border: none;
+  cursor: pointer;
+  
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
