@@ -1,4 +1,4 @@
-<div class="c-card c-card--debit">
+<div class="c-card" [class.c-card--credit]="card.type === 'credit'" [class.c-card--debit]="card.type === 'debit'">
   <div class="c-card__header">
     <div class="c-card__chip"></div>
     <p class="c-card__type">Tarjeta</p>

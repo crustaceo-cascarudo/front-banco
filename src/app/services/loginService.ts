@@ -13,8 +13,8 @@ export class LoginService {
   loginUrl = this.url + 'login';
   registerUrl = this.url + 'register';
 
-  logIn(name: string, plainPassword: string) {
-    this.http.post<LoginResponse>(this.loginUrl, { name, plainPassword }).subscribe({
+  logIn(dni: string, plainPassword: string) {
+    this.http.post<LoginResponse>(this.loginUrl, { dni, plainPassword }).subscribe({
       next: (datos) => {
         console.log(datos);
 
@@ -30,8 +30,8 @@ export class LoginService {
     });
   }
 
-  register(name: string, surname: string, dni: string, plainPassword: string) {
-    this.http.post<LoginResponse>(this.registerUrl, { name, surname, dni, plainPassword }).subscribe({
+  register(name: string, surname: string, surname2: string, dni: string, password: string) {
+    this.http.post<LoginResponse>(this.registerUrl, { name, surname, surname2, dni, password }).subscribe({
       next: (datos) => {
         console.log(datos);
 
@@ -49,6 +49,7 @@ export class LoginService {
   }
 
   logOut() {
+    this.http.post(this.url + 'logout', {}).subscribe();
     this.authService.logout().subscribe();
   }
 }

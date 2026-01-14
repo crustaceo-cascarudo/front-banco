@@ -41,6 +41,7 @@ export class CLoginRegisterform {
       this.loginService.register(
         this.registerData.name,
         this.registerData.surname,
+        this.registerData.surname2 || '',
         this.registerData.dni,
         this.registerData.password
       );

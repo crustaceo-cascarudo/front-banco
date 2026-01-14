@@ -10,7 +10,7 @@ import { Page } from '../models/page';
   providedIn: 'root',
 })
 export class HttpClientService {
-  private baseUrl = "http://localhost:3000";
+  private baseUrl = "http://localhost:8080";
 
   httpClient = inject(HttpClient);
 
