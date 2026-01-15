@@ -54,7 +54,16 @@ export class CLoginRegisterform {
         this.registerData.surname2 || '',
         this.registerData.dni,
         this.registerData.password
-      );
+      ).subscribe({
+        next: (response) => {
+          
+          this.router.navigate(['/dashboard']);
+          console.log('Redirigiendo');
+        },
+        error: (error) => {
+          console.error('Error en el registro');
+        }
+      });
     }
   }
 }

@@ -4,6 +4,7 @@ import { AuthService } from './auth-service';
 import { LoginResponse } from '../models/user/loginResponse';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +12,7 @@ import { tap } from 'rxjs/operators';
 export class LoginService {
   http = inject(HttpClient);
   authService = inject(AuthService);
+  router = inject(Router);
   url = 'http://localhost:8080/api/users/';
   loginUrl = this.url + 'login';
   registerUrl = this.url + 'register';
@@ -24,6 +26,7 @@ export class LoginService {
             this.authService.setToken(datos.token);
             this.authService.setUserId(datos.user.id);
             console.log('✅ Token y userId guardados:', datos.user.id);
+            this.router.navigate(['/dashboard']);
           } else {
             this.authService.removeToken();
             this.authService.removeUserId();
@@ -35,22 +38,15 @@ export class LoginService {
     );
   }
 
+
   register(name: string, surname: string, surname2: string, dni: string, password: string): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(this.registerUrl, { name, surname, surname2, dni, password }).pipe(
       tap({
         next: (datos) => {
-          console.log('Register response:', datos);
-          if (datos.token != null && datos.token != "" && datos.user) {
-            this.authService.setToken(datos.token);
-            this.authService.setUserId(datos.user.id);
-            console.log('✅ Token y userId guardados:', datos.user.id);
-          } else {
-            this.authService.removeToken();
-            this.authService.removeUserId();
-            alert("Error en el registro");
-          }
+          console.log(datos);
+          this.logIn(dni, password).subscribe();
         },
-        error: (error) => console.log('ERROR REGISTER:', error.status)
+        error: (error) => console.log('ERROR JSON SERVER' + error.status)
       })
     );
   }

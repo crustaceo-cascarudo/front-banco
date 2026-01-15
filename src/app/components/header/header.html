@@ -2,10 +2,10 @@
   <h1 class="header__title">CCB</h1>
   @if (isLoggedIn()) {
     <div class="header__user-section">
-      <div class="user-icon-container" 
-         (mouseenter)="showLogoutPanel = true" 
+      <div class="user-icon-container"
+         (mouseenter)="showLogoutPanel = true"
          (mouseleave)="showLogoutPanel = false">
-      <img src="../../../../public/img/user.png" alt="User" class="header__logo">
+      <img src="../img/user.png" alt="User" class="header__logo">
       @if (showLogoutPanel) {
         <div class="logout-panel">
           <button class="logout-button" (click)="logOut()">Logout</button>
