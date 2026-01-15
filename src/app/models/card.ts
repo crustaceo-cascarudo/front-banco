@@ -2,6 +2,6 @@ export interface Card {
   cardNumber: string;
   cardHolderName: string;
   expirationDate: string;
-  cvv: number;
+  cvc: number;
   accountIban: string;
 }

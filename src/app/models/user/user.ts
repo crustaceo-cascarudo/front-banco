@@ -6,5 +6,4 @@ export interface User {
     surname2?: string;
     password: string;
     dni: string;
-    type: 'business' | 'personal';
 }

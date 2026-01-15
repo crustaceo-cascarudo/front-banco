@@ -10,7 +10,11 @@
     <div class="c-card__details">
       <div class="c-card__detail">
         <span class="c-card__label">Vence</span>
-        <span class="c-card__value">{{ card.expirationDate }}</span>
+        <span class="c-card__value">{{ card.expirationDate | date: 'MM/yy' }}</span>
+      </div>
+      <div class="c-card__detail">
+        <span class="c-card__label">CVV</span>
+        <span class="c-card__value">{{ card.cvc }}</span>
       </div>
     </div>
   </div>

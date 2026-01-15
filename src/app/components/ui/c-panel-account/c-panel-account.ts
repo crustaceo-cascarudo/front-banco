@@ -6,6 +6,8 @@ import { Movement } from '../../../models/movement';
 import { CMovement } from '../c-movement/c-movement'
 import { HttpClientService } from '../../../services/http-client-service';
 import { AuthService } from '../../../services/auth-service';
+import { User } from '../../../models/user/user';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'c-panel-account',
@@ -22,6 +24,7 @@ export class CPanelAccount implements OnInit, OnDestroy, AfterViewInit {
   userName: string = '';
   userDni: string | null = null;
   userId: number | null = null;
+  user?: User;
   accounts: Account[] = [];
   currentAccountIndex: number = 0;
   movements: Movement[] = [];
@@ -38,11 +41,12 @@ export class CPanelAccount implements OnInit, OnDestroy, AfterViewInit {
     const userId = this.authService.getUserId();
 
     if (userId) {
-      console.log('🔍 Cargando cuentas para usuario ID:', userId);
+      console.log('Cargando cuentas para usuario ID:', userId);
       this.userId = userId;
       this.loadUserAccounts(userId);
+      this.loadUser(userId);
     } else {
-      console.error('❌ No se encontró el ID del usuario en localStorage');
+      console.error('Usuario no encontrado');
     }
   }
 
@@ -51,11 +55,11 @@ export class CPanelAccount implements OnInit, OnDestroy, AfterViewInit {
       next: (accounts: Account[]) => {
         if (accounts && accounts.length > 0) {
           this.accounts = accounts;
-          console.log('💳 Cuentas cargadas:', this.accounts);
+          console.log('Cuentas cargadas:', this.accounts);
           this.loadMovements(this.accounts[0].iban);
           this.currentAccountOn.emit(this.accounts[0]);
         } else {
-          console.log('⚠️ No se encontraron cuentas para el usuario');
+          console.log('No se encontraron cuentas para el usuario');
         }
       },
       error: (error) => {
@@ -63,6 +67,21 @@ export class CPanelAccount implements OnInit, OnDestroy, AfterViewInit {
       }
     });
     this.subscriptions.add(accountSub);
+  }
+
+  private loadUser(userId: number): void {
+    const userSub = this.httpService.getCurrentUser(userId).subscribe({
+      next: (user: User) => {
+        this.user = user;
+        this.userName = `${user.name}`;
+        console.log('Usuario cargado:', this.user);
+      }
+      ,
+      error: (error) => {
+        console.error('Error loading user:', error);
+      }
+    });
+    this.subscriptions.add(userSub);
   }
 
   ngAfterViewInit(): void {
@@ -84,7 +103,7 @@ export class CPanelAccount implements OnInit, OnDestroy, AfterViewInit {
           .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
           .slice(0, 5);
 
-        console.log('📊 Movimientos para cuenta', accountIban, ':', this.movements);
+        console.log('Movimientos para cuenta', accountIban, ':', this.movements);
       },
       error: (error) => {
         console.error('Error loading movements:', error);

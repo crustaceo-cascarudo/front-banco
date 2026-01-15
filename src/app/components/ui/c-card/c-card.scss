@@ -78,6 +78,7 @@
 
     &__details {
         display: flex;
+        justify-content: space-between;
         gap: var(--mlt-sys-margin-8);
         margin-top: var(--mlt-sys-margin-4);
     }

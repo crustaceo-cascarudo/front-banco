@@ -25,7 +25,7 @@ export class LoginService {
           if (datos.token != null && datos.token != "" && datos.user) {
             this.authService.setToken(datos.token);
             this.authService.setUserId(datos.user.id);
-            console.log('✅ Token y userId guardados:', datos.user.id);
+            console.log('Token y userId guardados:', datos.user.id);
             this.router.navigate(['/dashboard']);
           } else {
             this.authService.removeToken();
