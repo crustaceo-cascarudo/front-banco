@@ -6,17 +6,17 @@
 
     @if (cards.length > 0) {
         <div class="c-panel-cards__carousel" (scroll)="onScroll($event)">
-            @for (card of cards; track card.id; let i = $index) {
+            @for (card of cards; track card.cardNumber; let i = $index) {
                 <div class="c-panel-cards__card-wrapper" 
                      [class.c-panel-cards__card-wrapper--active]="i === currentCardIndex">
-                    <c-card [card]="card" [balance]="getCardBalance(card.id)"/>
+                    <c-card [card]="card"/>
                 </div>
             }
         </div>
 
         @if (cards.length > 1) {
             <div class="c-panel-cards__indicators">
-                @for (card of cards; track card.id; let i = $index) {
+                @for (card of cards; track card.cardNumber; let i = $index) {
                     <button 
                         class="c-panel-cards__indicator" 
                         [class.c-panel-cards__indicator--active]="i === currentCardIndex"

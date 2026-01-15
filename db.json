@@ -27,87 +27,81 @@
   ],
   "accounts": [
     {
-      "id": 1,
       "iban": "ES9121000418450200051332",
       "balance": 2450.75,
-      "status": "active",
       "userId": 1
     },
     {
-      "id": 2,
       "iban": "ES7921000813610123456789",
       "balance": 1200.00,
-      "status": "active",
       "userId": 1
     },
     {
-      "id": 3,
       "iban": "ES6621000418401234567891",
       "balance": 560.30,
-      "status": "active",
       "userId": 1
     },
     {
-      "id": 4,
       "iban": "ES1021009876543210001122",
       "balance": 9800.00,
-      "status": "active",
       "userId": 1
     }
   ],
   "cards": [
     {
-      "id": 1,
       "cardNumber": "4111 1111 1111 1111",
-      "expiryDate": "12/27",
-      "cvv": "123",
+      "cardHolderName": "Juan Pérez",
+      "expirationDate": "12/27",
+      "cvv": 123,
+      "accountIban": "ES9121000418450200051332",
       "type": "debit",
-      "status": "active",
-      "accountId": 1
+      "status": "active"
     },
     {
-      "id": 2,
       "cardNumber": "5222 2222 2222 2222",
-      "expiryDate": "05/28",
-      "cvv": "456",
-      "type": "debit",
-      "status": "active",
-      "accountId": 1
-    },
-    {
-      "id": 3,
-      "cardNumber": "4333 3333 3333 3333",
-      "expiryDate": "09/26",
-      "cvv": "789",
-      "type": "debit",
-      "status": "active",
-      "accountId": 2
-    },
-    {
-      "id": 4,
-      "cardNumber": "5444 4444 4444 4444",
-      "expiryDate": "03/29",
-      "cvv": "321",
+      "cardHolderName": "Juan Pérez",
+      "expirationDate": "05/28",
+      "cvv": 456,
+      "accountIban": "ES9121000418450200051332",
       "type": "credit",
-      "status": "active",
-      "accountId": 3
+      "status": "active"
+    },
+    {
+      "cardNumber": "4333 3333 3333 3333",
+      "cardHolderName": "Juan Pérez",
+      "expirationDate": "09/26",
+      "cvv": 789,
+      "accountIban": "ES7921000813610123456789",
+      "type": "debit",
+      "status": "active"
+    },
+    {
+      "cardNumber": "5444 4444 4444 4444",
+      "cardHolderName": "Juan Pérez",
+      "expirationDate": "03/29",
+      "cvv": 321,
+      "accountIban": "ES6621000418401234567891",
+      "type": "debit",
+      "status": "active"
     }
   ],
   "movements": [
     {
       "id": 1,
       "type": "debit",
-      "originAccountId": 1,
-      "destinationAccountId": 2,
+      "paymentMethod": "transfer",
+      "originAccountIban": "ES9121000418450200051332",
+      "destinationAccountIban": "ES7921000813610123456789",
       "amount": 500.00,
       "date": "2025-01-12",
-      "description": "Transferencia a María"
+      "description": "Transferencia interna"
     },
     {
       "id": 2,
       "type": "debit",
-      "originAccountId": 1,
-      "destinationAccountId": null,
+      "paymentMethod": "card",
+      "originAccountIban": "ES9121000418450200051332",
+      "destinationAccountIban": null,
       "amount": 65.90,
       "date": "2025-01-15",
       "description": "Pago en supermercado"
@@ -115,8 +109,9 @@
     {
       "id": 3,
       "type": "credit",
-      "originAccountId": null,
-      "destinationAccountId": 1,
+      "paymentMethod": "deposit",
+      "originAccountIban": null,
+      "destinationAccountIban": "ES9121000418450200051332",
       "amount": 1500.00,
       "date": "2025-01-25",
       "description": "Nómina mensual"
@@ -124,8 +119,9 @@
     {
       "id": 4,
       "type": "debit",
-      "originAccountId": 3,
-      "destinationAccountId": null,
+      "paymentMethod": "card",
+      "originAccountIban": "ES6621000418401234567891",
+      "destinationAccountIban": null,
       "amount": 23.50,
       "date": "2025-02-01",
       "description": "Pago suscripción Netflix"
@@ -133,8 +129,9 @@
     {
       "id": 5,
       "type": "credit",
-      "originAccountId": null,
-      "destinationAccountId": 3,
+      "paymentMethod": "transfer",
+      "originAccountIban": null,
+      "destinationAccountIban": "ES6621000418401234567891",
       "amount": 75.00,
       "date": "2025-02-03",
       "description": "Bizum de amigo"
@@ -142,17 +139,19 @@
     {
       "id": 6,
       "type": "debit",
-      "originAccountId": 1,
-      "destinationAccountId": 4,
+      "paymentMethod": "transfer",
+      "originAccountIban": "ES9121000418450200051332",
+      "destinationAccountIban": "ES1021009876543210001122",
       "amount": 200.00,
       "date": "2025-02-05",
-      "description": "Transferencia a Carlos"
+      "description": "Transferencia interna"
     },
     {
       "id": 7,
       "type": "debit",
-      "originAccountId": 3,
-      "destinationAccountId": null,
+      "paymentMethod": "card",
+      "originAccountIban": "ES6621000418401234567891",
+      "destinationAccountIban": null,
       "amount": 42.70,
       "date": "2025-02-10",
       "description": "Compra en Amazon"

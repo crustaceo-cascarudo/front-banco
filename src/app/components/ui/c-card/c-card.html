@@ -1,25 +1,21 @@
-<div class="c-card" [class.c-card--credit]="card.type === 'credit'" [class.c-card--debit]="card.type === 'debit'">
-    <div class="c-card__header">
-        <div class="c-card__chip"></div>
-        <p class="c-card__type">Tarjeta {{ card.type === 'debit' ? 'débito' : 'crédito' }}</p>
+<div class="c-card">
+  <div class="c-card__header">
+    <div class="c-card__chip"></div>
+    <p class="c-card__type">Tarjeta</p>
+  </div>
+
+  <div class="c-card__body">
+    <p class="c-card__number">{{ card.cardNumber }}</p>
+
+    <div class="c-card__details">
+      <div class="c-card__detail">
+        <span class="c-card__label">Vence</span>
+        <span class="c-card__value">{{ card.expirationDate | date: 'MM/yy' }}</span>
+      </div>
+      <div class="c-card__detail">
+        <span class="c-card__label">CVV</span>
+        <span class="c-card__value">{{ card.cvc }}</span>
+      </div>
     </div>
-    
-    <div class="c-card__body">
-        <p class="c-card__number">{{ formatCardNumber(card.cardNumber) }}</p>
-        <div class="c-card__details">
-            <div class="c-card__detail">
-                <span class="c-card__label">Titular</span>
-                <p class="c-card__value">{{ card.cardHolderName }}</p>
-            </div>
-            <div class="c-card__detail">
-                <span class="c-card__label">Vence</span>
-                <p class="c-card__value">{{ card.expirationDate }}</p>
-            </div>
-        </div>
-    </div>
-    
-    <div class="c-card__footer">
-        <p class="c-card__balance-label">Compras con esta tarjeta</p>
-        <p class="c-card__balance">{{ balance | number:'1.2-2' }}€</p>
-    </div>
+  </div>
 </div>

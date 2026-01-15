@@ -1,6 +1,7 @@
 .header {
   --mlt-sys-color-primary-turquoise: #1abc9c;
   --mlt-sys-color-primary-green: #2ecc71;
+  --header-font-family: var(--mlt-sys-font-family-default);
 
   background: linear-gradient(
     90deg,
@@ -8,11 +9,13 @@
     var(--mlt-sys-color-primary-turquoise) 70%,
     var(--mlt-sys-color-primary-green) 100%
   );
-  
+
   display: flex;
+  justify-content: space-between;
   align-items: center;
   padding: 20px;
   font-weight: bolder;
+  font-family: var(--header-font-family);
 }
 
 .header__title {
@@ -20,3 +23,58 @@
   font-size: 2rem;
   margin: 0;
 }
+
+.header__user-section {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.user-icon-container {
+  width: 30px;
+  height: 30px;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header__logo {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.logout-panel {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  min-width: 120px;
+  padding: 8px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  white-space: nowrap;
+}
+
+.logout-button {
+  width: 100%;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: var(--header-font-family);
+  color: #e74c3c;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #f8f9fa;
+  }
+}
+

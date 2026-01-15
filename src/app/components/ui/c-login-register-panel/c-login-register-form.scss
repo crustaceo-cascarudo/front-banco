@@ -11,6 +11,7 @@
     --form-color-background: var(--mlt-sys-color-background);
     --form-color-primary-text: var(--mlt-sys-color-primary-text);
     --form-color-secondary-text: var(--mlt-sys-color-secondary-text);
+    --form-font-family: var(--mlt-sys-font-family-default);
 
     max-width: 400px;
     margin: 0 auto;
@@ -18,6 +19,7 @@
     background-color: var(--mlt-sys-color-background);
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    font-family: var(--form-font-family);
 }
 
 .form__title {

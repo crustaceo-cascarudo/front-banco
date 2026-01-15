@@ -3,12 +3,14 @@
     <h2 class="form__title">Login</h2>
     <form class="form__form" (ngSubmit)="onLoginSubmit(loginForm)" #loginForm="ngForm">
         <div class="form__field">
-            <label class="form__label" for="username">Username:</label>
-            <input class="form__input" type="text" id="login-username" name="namemail" [(ngModel)]="loginData.namemail" required>
+            <label class="form__label" for="login-dni">*DNI</label>
+            <input class="form__input" type="text" id="Linuxogin-dni" name="dni" [(ngModel)]="loginData.dni" required
+            oninvalid="this.setCustomValidity('Por favor escribe el dni')"
+            oninput="this.setCustomValidity('')">
         </div>
 
         <div class="form__field">
-            <label class="form__label" for="password">Password:</label>
+            <label class="form__label" for="login-password">*Password</label>
             <input class="form__input" type="password" id="login-password" name="plainPassword" [(ngModel)]="loginData.plainPassword" required>
         </div>
 
@@ -20,17 +22,27 @@
     <h2 class="form__title">Register</h2>
     <form class="form__form" (ngSubmit)="onRegisterSubmit(registerForm)" #registerForm="ngForm">
         <div class="form__field">
-            <label class="form__label" for="username">Username:</label>
-            <input class="form__input" type="text" id="register-username" name="name" [(ngModel)]="registerData.name" required>
+            <label class="form__label" for="name">*Name</label>
+            <input class="form__input" type="text" id="register-name" name="name" [(ngModel)]="registerData.name" required>
         </div>
 
         <div class="form__field">
-            <label class="form__label" for="email">Email:</label>
-            <input class="form__input" type="email" id="register-email" name="email" [(ngModel)]="registerData.email" required>
+            <label class="form__label" for="surname">*Surname</label>
+            <input class="form__input" type="text" id="register-surname" name="surname" [(ngModel)]="registerData.surname" required>
+        </div>
+
+         <div class="form__field">
+            <label class="form__label" for="surname2">Second Surname</label>
+            <input class="form__input" type="text" id="register-surname2" name="surname2" [(ngModel)]="registerData.surname2">
+        </div>
+
+         <div class="form__field">
+            <label class="form__label" for="dni">*DNI</label>
+            <input class="form__input" type="text" id="register-dni" name="dni" [(ngModel)]="registerData.dni" required>
         </div>
 
         <div class="form__field">
-            <label class="form__label" for="password">Password:</label>
+            <label class="form__label" for="password">*Password</label>
             <input class="form__input" type="password" id="register-password" name="password" [(ngModel)]="registerData.password" required>
         </div>
 

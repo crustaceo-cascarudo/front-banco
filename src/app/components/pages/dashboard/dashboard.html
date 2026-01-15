@@ -1,4 +1,4 @@
 <body>
     <c-panel-account (currentAccountOn)="onAccountChange($event)"></c-panel-account>
-    <c-panel-cards [accountId]="currentAccount?.id ?? null"></c-panel-cards>
+    <c-panel-cards [accountIban]="currentAccount?.iban ?? null"></c-panel-cards>
 </body>
