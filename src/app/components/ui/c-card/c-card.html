@@ -1,18 +1,13 @@
-<div class="c-card" [class.c-card--credit]="card.type === 'credit'" [class.c-card--debit]="card.type === 'debit'">
+<div class="c-card">
   <div class="c-card__header">
     <div class="c-card__chip"></div>
     <p class="c-card__type">Tarjeta</p>
   </div>
-  
+
   <div class="c-card__body">
     <p class="c-card__number">{{ card.cardNumber }}</p>
-    
+
     <div class="c-card__details">
-      <div class="c-card__detail">
-        <span class="c-card__label">Titular</span>
-        <span class="c-card__value">{{ card.cardHolderName }}</span>
-      </div>
-      
       <div class="c-card__detail">
         <span class="c-card__label">Vence</span>
         <span class="c-card__value">{{ card.expirationDate }}</span>

@@ -25,7 +25,10 @@ export class HttpClientService {
   }
 
   // ========== BANK MOVEMENTS ==========
-  getMovementsByAccountIban(iban: string): Observable<any[]> {
-    return this.httpClient.get<any[]>(`${this.baseUrl}/bank-movements/account/${iban}`);
+  getMovementsByAccountIbanRecipient(iban: string): Observable<any[]> {
+    return this.httpClient.get<any[]>(`${this.baseUrl}/bank-movements/recipient/${iban}`);
+  }
+  getMovementsByAccountIbanOrigin(iban: string): Observable<any[]> {
+    return this.httpClient.get<any[]>(`${this.baseUrl}/bank-movements/origin/${iban}`);
   }
 }
