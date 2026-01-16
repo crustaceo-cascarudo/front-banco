@@ -1,6 +1,6 @@
 <div class="c-panel-account">
     <h1 class="c-panel-account__title">Cuentas</h1>
-    
+
     <div class="c-panel-account__carousel" (scroll)="onScroll($event)">
         @for (account of accounts; track account.iban; let i = $index) {
             <div class="c-panel-account__card" [class.c-panel-account__card--active]="i === currentAccountIndex">
@@ -17,7 +17,7 @@
                             </div>
                             <div class="c-panel-account__movements-list">
                                 @for (movement of movements; track movement.id) {
-                                    <c-movement [movement]="movement"/>
+                                    <c-movement [movement]="movement" [ibanOrigin]="account.iban"/>
                                 }
                             </div>
                         </div>
@@ -30,8 +30,8 @@
     @if (accounts.length > 1) {
         <div class="c-panel-account__indicators">
             @for (account of accounts; track account.iban; let i = $index) {
-                <button 
-                    class="c-panel-account__indicator" 
+                <button
+                    class="c-panel-account__indicator"
                     [class.c-panel-account__indicator--active]="i === currentAccountIndex"
                     (click)="scrollToAccount(i)"
                     [attr.aria-label]="'Ver cuenta ' + (i + 1)">
