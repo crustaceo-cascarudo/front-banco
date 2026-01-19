@@ -1,16 +1,16 @@
 <header class="header">
   <h1 class="header__title">CCB</h1>
   @if (isLoggedIn()) {
-    <div class="header__user-section">
-      <div class="user-icon-container"
-         (mouseenter)="showLogoutPanel = true"
-         (mouseleave)="showLogoutPanel = false">
-      <img src="../img/user.png" alt="User" class="header__logo">
-      @if (showLogoutPanel) {
-        <div class="logout-panel">
-          <button class="logout-button" (click)="logOut()">Logout</button>
-        </div>
-      }
+    <div class="header__user-section"
+      (mouseenter)="showLogoutPanel = true" 
+      (mouseleave)="showLogoutPanel = false">
+      <div id="user-icon" class="user-icon-container">
+        <img src="../img/user.png" alt="User" class="header__logo">
+        @if (showLogoutPanel) {
+          <div class="logout-panel">
+            <button class="logout-button" (click)="logOut()">Logout</button>
+          </div>
+        }
       </div>
     </div>
   }
