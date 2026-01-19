@@ -10,4 +10,5 @@ import { Movement } from '../../../models/movement'
 })
 export class CMovement {
   @Input({ required: true }) movement!: Movement;
+  @Input() ibanOrigin!: string;
 }

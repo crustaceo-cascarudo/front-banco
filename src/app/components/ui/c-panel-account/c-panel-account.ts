@@ -7,7 +7,6 @@ import { CMovement } from '../c-movement/c-movement'
 import { HttpClientService } from '../../../services/http-client-service';
 import { AuthService } from '../../../services/auth-service';
 import { User } from '../../../models/user/user';
-import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'c-panel-account',
