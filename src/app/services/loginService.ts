@@ -13,7 +13,7 @@ export class LoginService {
   http = inject(HttpClient);
   authService = inject(AuthService);
   router = inject(Router);
-  url = 'http://localhost:8080/api/users/';
+  url = 'http://bank-crustaceo-cascarudo.preproducciondaw.cip.fpmislata.com/api/users/';
   loginUrl = this.url + 'login';
   registerUrl = this.url + 'register';
 

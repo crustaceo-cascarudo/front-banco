@@ -4,49 +4,49 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 @Injectable({
-    providedIn: 'root',
+  providedIn: 'root',
 })
 export class AuthService {
-    private readonly TOKEN_KEY = 'token';
-    private readonly USER_ID_KEY = 'user_id';
-    private readonly baseUrl = 'http://localhost:8080/api';
-    private httpClient = inject(HttpClient);
+  private readonly TOKEN_KEY = 'token';
+  private readonly USER_ID_KEY = 'user_id';
+  private readonly baseUrl = 'http://bank-crustaceo-cascarudo.preproducciondaw.cip.fpmislata.com/api';
+  private httpClient = inject(HttpClient);
 
-    getToken(): string | null {
-        return localStorage.getItem(this.TOKEN_KEY);
-    }
+  getToken(): string | null {
+    return localStorage.getItem(this.TOKEN_KEY);
+  }
 
-    setToken(token: string): void {
-        localStorage.setItem(this.TOKEN_KEY, token);
-    }
+  setToken(token: string): void {
+    localStorage.setItem(this.TOKEN_KEY, token);
+  }
 
-    removeToken(): void {
-        localStorage.removeItem(this.TOKEN_KEY);
-    }
+  removeToken(): void {
+    localStorage.removeItem(this.TOKEN_KEY);
+  }
 
-    getUserId(): number | null {
-        const id = localStorage.getItem(this.USER_ID_KEY);
-        return id ? parseInt(id, 10) : null;
-    }
+  getUserId(): number | null {
+    const id = localStorage.getItem(this.USER_ID_KEY);
+    return id ? parseInt(id, 10) : null;
+  }
 
-    setUserId(userId: number): void {
-        localStorage.setItem(this.USER_ID_KEY, userId.toString());
-    }
+  setUserId(userId: number): void {
+    localStorage.setItem(this.USER_ID_KEY, userId.toString());
+  }
 
-    removeUserId(): void {
-        localStorage.removeItem(this.USER_ID_KEY);
-    }
+  removeUserId(): void {
+    localStorage.removeItem(this.USER_ID_KEY);
+  }
 
-    isLoggedIn(): boolean {
-        return !!this.getToken();
-    }
+  isLoggedIn(): boolean {
+    return !!this.getToken();
+  }
 
-    logout(): Observable<any> {
-        return this.httpClient.post(`${this.baseUrl}/users/logout`, {}).pipe(
-            tap(() => {
-                this.removeToken();
-                this.removeUserId();
-            })
-        );
-    }
+  logout(): Observable<any> {
+    return this.httpClient.post(`${this.baseUrl}/users/logout`, {}).pipe(
+      tap(() => {
+        this.removeToken();
+        this.removeUserId();
+      })
+    );
+  }
 }

@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class HttpClientService {
   private httpClient = inject(HttpClient);
-  private readonly baseUrl = 'http://localhost:8080/api';
+  private readonly baseUrl = 'http://bank-crustaceo-cascarudo.preproducciondaw.cip.fpmislata.com/api';
 
   // ========== USERS ==========
   getCurrentUser(userId: number): Observable<any> {
