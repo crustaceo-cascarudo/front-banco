@@ -9,7 +9,7 @@ import { tap } from 'rxjs/operators';
 export class AuthService {
   private readonly TOKEN_KEY = 'token';
   private readonly USER_ID_KEY = 'user_id';
-  private readonly baseUrl = 'http://bank-crustaceo-cascarudo.preproducciondaw.cip.fpmislata.com/api';
+  private readonly baseUrl = 'bank-back-crustaceo-cascarudo.preproducciondaw.cip.fpmislata.com/api';
   private httpClient = inject(HttpClient);
 
   getToken(): string | null {
