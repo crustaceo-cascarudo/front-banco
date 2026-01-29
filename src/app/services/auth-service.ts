@@ -9,14 +9,9 @@ import { tap } from 'rxjs/operators';
 export class AuthService {
   private readonly TOKEN_KEY = 'token';
   private readonly USER_ID_KEY = 'user_id';
-  private baseUrl!: string;
+  private baseUrl = "https://api-bank-class.ishimi.es/api";
   private httpClient = inject(HttpClient);
 
-  constructor() {
-    this.httpClient.get<{ apiUrl: string }>('/assets/config.json').subscribe((config) => {
-      this.baseUrl = config.apiUrl;
-    });
-  }
 
   getToken(): string | null {
     return localStorage.getItem(this.TOKEN_KEY);

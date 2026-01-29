@@ -6,14 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class JsonServerService<T> {
-  private apiUrl !: string;
+  private apiUrl = "https://api-store-class.ishimi.es/api";
   http = inject(HttpClient);
-
-  constructor() {
-    this.http.get<{ apiUrl: string }>('/assets/config.json').subscribe((config) => {
-      this.apiUrl = config.apiUrl;
-    });
-  }
 
   // CREATE - Crear un nuevo registro
   create(endpoint: string, data: T): Observable<T> {

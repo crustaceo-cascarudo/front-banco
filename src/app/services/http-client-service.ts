@@ -7,13 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class HttpClientService {
   private httpClient = inject(HttpClient);
-  private baseUrl!: string;
+  private baseUrl = "https://api-bank-class.ishimi.es/api";
 
-  constructor() {
-    this.httpClient.get<{ apiUrl: string }>('/assets/config.json').subscribe((config) => {
-      this.baseUrl = config.apiUrl;
-    });
-  }
 
   // ========== USERS ==========
   getCurrentUser(userId: number): Observable<any> {
