@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -6,9 +6,14 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class JsonServerService<T> {
-  private apiUrl = 'http://localhost:3000';
+  private apiUrl !: string;
+  http = inject(HttpClient);
 
-  constructor(private http: HttpClient) {}
+  constructor() {
+    this.http.get<{ apiUrl: string }>('/assets/config.json').subscribe((config) => {
+      this.apiUrl = config.apiUrl;
+    });
+  }
 
   // CREATE - Crear un nuevo registro
   create(endpoint: string, data: T): Observable<T> {

@@ -9,8 +9,14 @@ import { tap } from 'rxjs/operators';
 export class AuthService {
   private readonly TOKEN_KEY = 'token';
   private readonly USER_ID_KEY = 'user_id';
-  private readonly baseUrl = 'http://bank-back-crustaceo-cascarudo.preproducciondaw.cip.fpmislata.com/api';
+  private baseUrl!: string;
   private httpClient = inject(HttpClient);
+
+  constructor() {
+    this.httpClient.get<{ apiUrl: string }>('/assets/config.json').subscribe((config) => {
+      this.baseUrl = config.apiUrl;
+    });
+  }
 
   getToken(): string | null {
     return localStorage.getItem(this.TOKEN_KEY);
