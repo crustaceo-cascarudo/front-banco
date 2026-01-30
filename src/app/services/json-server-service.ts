@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class JsonServerService<T> {
-  private apiUrl = "https://api-store-class.ishimi.es/api";
+  private apiUrl = "https://api-bank-class.ishimi.es/api";
   http = inject(HttpClient);
 
   // CREATE - Crear un nuevo registro
