@@ -25,12 +25,10 @@ export class LoginService {
           console.log('Login response:', datos);
           if (datos.token != null && datos.token != "" && datos.user) {
             this.authService.setToken(datos.token);
-            this.authService.setUserId(datos.user.id);
-            console.log('Token y userId guardados:', datos.user.id);
+            console.log('Token guardado, usuario:', datos.user.name);
             this.router.navigate(['/dashboard']);
           } else {
             this.authService.removeToken();
-            this.authService.removeUserId();
             alert("Contraseña incorrecta");
           }
         },

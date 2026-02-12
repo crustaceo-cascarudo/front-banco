@@ -11,13 +11,13 @@ export class HttpClientService {
 
 
   // ========== USERS ==========
-  getCurrentUser(userId: number): Observable<any> {
-    return this.httpClient.get<any>(`${this.baseUrl}/users/${userId}`);
+  getCurrentUser(): Observable<any> {
+    return this.httpClient.get<any>(`${this.baseUrl}/users/me`);
   }
 
   // ========== BANK ACCOUNTS ==========
-  getAccountsByUserId(userId: number): Observable<any[]> {
-    return this.httpClient.get<any[]>(`${this.baseUrl}/bank-accounts/user/${userId}`);
+  getMyAccounts(): Observable<any[]> {
+    return this.httpClient.get<any[]>(`${this.baseUrl}/bank-accounts/me`);
   }
 
   // ========== CREDIT CARDS ==========

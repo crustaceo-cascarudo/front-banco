@@ -22,7 +22,6 @@ export class CPanelAccount implements OnInit, OnDestroy, AfterViewInit {
 
   userName: string = '';
   userDni: string | null = null;
-  userId: number | null = null;
   user?: User;
   accounts: Account[] = [];
   currentAccountIndex: number = 0;
@@ -37,20 +36,13 @@ export class CPanelAccount implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit(): void {
-    const userId = this.authService.getUserId();
-
-    if (userId) {
-      console.log('Cargando cuentas para usuario ID:', userId);
-      this.userId = userId;
-      this.loadUserAccounts(userId);
-      this.loadUser(userId);
-    } else {
-      console.error('Usuario no encontrado');
-    }
+    console.log('Cargando datos del usuario autenticado');
+    this.loadUserAccounts();
+    this.loadUser();
   }
 
-  private loadUserAccounts(userId: number): void {
-    const accountSub = this.httpService.getAccountsByUserId(userId).subscribe({
+  private loadUserAccounts(): void {
+    const accountSub = this.httpService.getMyAccounts().subscribe({
       next: (accounts: Account[]) => {
         if (accounts && accounts.length > 0) {
           this.accounts = accounts;
@@ -68,8 +60,8 @@ export class CPanelAccount implements OnInit, OnDestroy, AfterViewInit {
     this.subscriptions.add(accountSub);
   }
 
-  private loadUser(userId: number): void {
-    const userSub = this.httpService.getCurrentUser(userId).subscribe({
+  private loadUser(): void {
+    const userSub = this.httpService.getCurrentUser().subscribe({
       next: (user: User) => {
         this.user = user;
         this.userName = `${user.name}`;
